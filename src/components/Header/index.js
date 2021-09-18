@@ -4,8 +4,18 @@ import {
   InputGroup,
   InputLeftElement,
   Input,
+  Menu,
+  MenuButton,
+  MenuDivider,
+  MenuItem,
+  MenuList,
 } from '@chakra-ui/react'
-import { SearchIcon, SettingsIcon } from '@chakra-ui/icons'
+import { 
+  SearchIcon, 
+  SettingsIcon,
+  ExternalLinkIcon,
+  AddIcon,
+} from '@chakra-ui/icons'
 
 const Header = () => {
   return (
@@ -24,8 +34,43 @@ const Header = () => {
       </InputGroup>
 
       <Flex alignItems="center">
-        <SettingsIcon w={7} h={7} mr={4} />
-        <Avatar size="sm" name="Matt Muirhead" />
+        <Menu>
+          <MenuButton
+            aria-label="School Settings"
+            variant="outline"
+          >
+            <Avatar size="sm" name="School Name" mx={3} />
+          </MenuButton>
+          <MenuList>
+            <MenuItem icon={<SettingsIcon />}>
+              School Name Settings
+            </MenuItem>
+            <MenuDivider />
+            <MenuItem icon={<ExternalLinkIcon />}>
+              Switch School
+            </MenuItem>
+            <MenuItem icon={<AddIcon />}>
+              New School
+            </MenuItem>
+          </MenuList>
+        </Menu>
+
+        <Menu>
+          <MenuButton
+            aria-label="User Settings"
+            variant="outline"
+          >
+            <Avatar size="sm" name="Matt Muirhead" />
+          </MenuButton>
+          <MenuList>
+            <MenuItem icon={<SettingsIcon />}>
+              User Settings
+            </MenuItem>
+            <MenuItem icon={<ExternalLinkIcon />}>
+              Logout
+            </MenuItem>
+          </MenuList>
+        </Menu>
       </Flex>
     </Flex>
   )
