@@ -1,6 +1,7 @@
 import { 
   Avatar,
   Flex, 
+  Icon,
   InputGroup,
   InputLeftElement,
   Input,
@@ -11,11 +12,13 @@ import {
   MenuList,
 } from '@chakra-ui/react'
 import { 
-  SearchIcon, 
-  SettingsIcon,
-  ExternalLinkIcon,
-  AddIcon,
-} from '@chakra-ui/icons'
+  BiSearch, 
+  BiCog, 
+  BiLogOutCircle, 
+  BiUserCircle,
+  BiCustomize,
+  BiGridAlt,
+} from 'react-icons/bi'
 
 const Header = () => {
   return (
@@ -28,7 +31,7 @@ const Header = () => {
       <InputGroup maxWidth="300px">
         <InputLeftElement
           pointerEvents="none"
-          children={<SearchIcon />}
+          children={<Icon as={BiSearch} boxSize={5} />}
         />
         <Input type="search" placeholder="Search ..." />
       </InputGroup>
@@ -42,14 +45,14 @@ const Header = () => {
             <Avatar size="sm" name="School Name" mx={3} />
           </MenuButton>
           <MenuList>
-            <MenuItem icon={<SettingsIcon />}>
+            <MenuItem icon={<Icon as={BiCog} boxSize={5} />}>
               School Name Settings
             </MenuItem>
             <MenuDivider />
-            <MenuItem icon={<ExternalLinkIcon />}>
+            <MenuItem icon={<Icon as={BiGridAlt} boxSize={5} />}>
               Switch School
             </MenuItem>
-            <MenuItem icon={<AddIcon />}>
+            <MenuItem icon={<Icon as={BiCustomize} boxSize={5} />}>
               New School
             </MenuItem>
           </MenuList>
@@ -63,10 +66,10 @@ const Header = () => {
             <Avatar size="sm" name="Matt Muirhead" />
           </MenuButton>
           <MenuList>
-            <MenuItem icon={<SettingsIcon />}>
+            <MenuItem icon={<Icon as={BiUserCircle} boxSize={5} />}>
               User Settings
             </MenuItem>
-            <MenuItem icon={<ExternalLinkIcon />}>
+            <MenuItem icon={<Icon as={BiLogOutCircle} boxSize={5} />}>
               Logout
             </MenuItem>
           </MenuList>
