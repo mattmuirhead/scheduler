@@ -19,8 +19,13 @@ import {
   BiCustomize,
   BiGridAlt,
 } from 'react-icons/bi'
+import { useHistory } from 'react-router-dom'
 
 const Header = () => {
+  const history = useHistory()
+
+  const logout = () => history.push('/')
+
   return (
     <Flex 
       p={4} 
@@ -28,7 +33,7 @@ const Header = () => {
       w="100%" 
       justifyContent="space-between" 
     >
-      <InputGroup maxWidth="300px">
+      <InputGroup>
         <InputLeftElement
           pointerEvents="none"
           children={<Icon as={BiSearch} boxSize={5} />}
@@ -69,7 +74,10 @@ const Header = () => {
             <MenuItem icon={<Icon as={BiUserCircle} boxSize={5} />}>
               User Settings
             </MenuItem>
-            <MenuItem icon={<Icon as={BiLogOutCircle} boxSize={5} />}>
+            <MenuItem 
+              onClick={logout}
+              icon={<Icon as={BiLogOutCircle} boxSize={5} />}
+            >
               Logout
             </MenuItem>
           </MenuList>
