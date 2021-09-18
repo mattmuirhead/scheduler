@@ -5,7 +5,7 @@ import {
   FormLabel,
   Heading,
   Input,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 import { useHistory }  from 'react-router-dom'
 
 const Login = () => {
