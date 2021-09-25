@@ -6,10 +6,11 @@ import {
   BiHome, 
   BiUser,
 } from 'react-icons/bi'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useHistory } from 'react-router-dom'
 
 const Sidebar = () => {
   const location = useLocation()
+  const history = useHistory()
   const isLocation = page => location.pathname.includes(page) ? 'solid' : 'ghost'
 
   return (
@@ -21,6 +22,7 @@ const Sidebar = () => {
     >
       <Heading mb={6}>Logo Here</Heading>
       <Button 
+        onClick={() => history.push('/dashboard')}
         leftIcon={<Icon as={BiHome} boxSize={5} />} 
         variant={isLocation('dashboard')}
         justifyContent="flex-start"
@@ -29,6 +31,7 @@ const Sidebar = () => {
         Dashboard
       </Button>
       <Button 
+        onClick={() => history.push('/staff')}
         leftIcon={<Icon as={BiUser} boxSize={5} />} 
         variant={isLocation('staff')}
         justifyContent="flex-start"
@@ -37,6 +40,7 @@ const Sidebar = () => {
         Staff
       </Button>
       <Button 
+        onClick={() => history.push('/pupils')}
         leftIcon={<Icon as={BiGroup} boxSize={5} />} 
         variant={isLocation('pupils')}
         justifyContent="flex-start"
@@ -45,6 +49,7 @@ const Sidebar = () => {
         Pupils
       </Button>
       <Button 
+        onClick={() => history.push('/rooms')}
         leftIcon={<Icon as={BiDoorOpen} boxSize={5} />} 
         variant={isLocation('rooms')}
         justifyContent="flex-start"
@@ -53,6 +58,7 @@ const Sidebar = () => {
         Rooms
       </Button>
       <Button 
+        onClick={() => history.push('/groups')}
         leftIcon={<Icon as={BiGroup} boxSize={5} />} 
         variant={isLocation('groups')}
         justifyContent="flex-start"
@@ -61,6 +67,7 @@ const Sidebar = () => {
         Groups
       </Button>
       <Button 
+        onClick={() => history.push('/classes')}
         leftIcon={<Icon as={BiAtom} boxSize={5} />} 
         variant={isLocation('classes')}
         justifyContent="flex-start"
