@@ -14,6 +14,7 @@ import {
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Staff from './pages/Staff'
+import StaffView from './pages/Staff/view'
 import Pupils from './pages/Pupils'
 import Rooms from './pages/Rooms'
 import Groups from './pages/Groups'
@@ -43,6 +44,7 @@ const App = () => {
       <Router>
         <Switch>
           <Layout path="/dashboard" component={Dashboard} />
+          <Layout path="/staff/:id" component={StaffView} />
           <Layout path="/staff" component={Staff} />
           <Layout path="/pupils" component={Pupils} />
           <Layout path="/rooms" component={Rooms} />
