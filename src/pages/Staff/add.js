@@ -6,7 +6,7 @@ import {
 import { BiChevronLeft } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom'
 
-const StaffView = () => {
+const StaffAdd = () => {
   const history = useHistory()
 
   return(
@@ -17,9 +17,9 @@ const StaffView = () => {
         icon={<BiChevronLeft />} 
         mr={4} 
       />
-      <Heading as="h2">Matt Muirhead</Heading>
+      <Heading as="h2">Add Staff</Heading>
     </Flex>
   )
 }
 
-export default StaffView
+export default StaffAdd
