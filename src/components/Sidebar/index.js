@@ -1,26 +1,41 @@
-import { Button, Flex, Icon, Heading } from '@chakra-ui/react'
+import { Button, Flex, Icon, IconButton, Heading, useMediaQuery } from '@chakra-ui/react'
 import { 
   BiAtom,
   BiDoorOpen,
   BiGroup,
   BiHome, 
   BiUser,
+  BiX
 } from 'react-icons/bi'
 import { useLocation, useHistory } from 'react-router-dom'
 
 const Sidebar = () => {
   const location = useLocation()
   const history = useHistory()
+  const [isDesktop] = useMediaQuery("(min-width: 768px)")
   const isLocation = page => location.pathname.includes(page) ? 'solid' : 'ghost'
 
   return (
     <Flex 
       flexDirection="column" 
-      borderRight="1px solid" 
-      p={4}
+      borderRight={isDesktop && '1px solid'}
+      position={!isDesktop && 'fixed'}
+      width={!isDesktop && '100%'}
+      height={!isDesktop && '100%'}
       minWidth="250px"
+      background="white"
+      zIndex={3}
+      p={4}
     >
-      <Heading mb={6}>Logo Here</Heading>
+      <Flex width="100%" justifyContent="space-between">
+        <Heading mb={6}>Logo Here</Heading>
+        {!isDesktop &&
+          <IconButton 
+            aria-label="Toggle Menu"
+            icon={<BiX />} 
+          />
+        }
+      </Flex>
       <Button 
         onClick={() => history.push('/dashboard')}
         leftIcon={<Icon as={BiHome} boxSize={5} />} 

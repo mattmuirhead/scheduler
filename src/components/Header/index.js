@@ -11,6 +11,8 @@ import {
   MenuItem,
   MenuList,
   Tooltip,
+  IconButton,
+  useMediaQuery,
 } from '@chakra-ui/react'
 import { 
   BiSearch, 
@@ -19,11 +21,13 @@ import {
   BiUserCircle,
   BiCustomize,
   BiGridAlt,
+  BiMenu,
 } from 'react-icons/bi'
 import { useHistory } from 'react-router-dom'
 
 const Header = () => {
   const history = useHistory()
+  const [isDesktop] = useMediaQuery("(min-width: 768px)")
 
   const logout = () => history.push('/')
 
@@ -34,7 +38,14 @@ const Header = () => {
       w="100%" 
       justifyContent="space-between" 
     >
-      <InputGroup>
+      {!isDesktop &&
+        <IconButton 
+          aria-label="Toggle Menu"
+          icon={<BiMenu />} 
+          mr={4} 
+        />
+      }
+      <InputGroup mr={2}>
         <InputLeftElement
           pointerEvents="none"
           children={<Icon as={BiSearch} boxSize={5} />}
