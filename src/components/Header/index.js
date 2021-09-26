@@ -23,10 +23,13 @@ import {
   BiGridAlt,
   BiMenu,
 } from 'react-icons/bi'
-import { useHistory } from 'react-router-dom'
+import { useHistory, useParams } from 'react-router-dom'
+import { RESOURCE_TYPES_NAMES } from '../../pages/Resource/config'
 
 const Header = () => {
   const history = useHistory()
+  const { resourceType } = useParams()
+  const searchName = !!resourceType ? RESOURCE_TYPES_NAMES[resourceType] : 'Everything'
   const [isDesktop] = useMediaQuery("(min-width: 768px)")
 
   const logout = () => history.push('/')
@@ -50,7 +53,7 @@ const Header = () => {
           pointerEvents="none"
           children={<Icon as={BiSearch} boxSize={5} />}
         />
-        <Input type="search" placeholder="Search ..." />
+        <Input type="search" placeholder={`Search ${searchName}...`} />
       </InputGroup>
 
       <Flex alignItems="center">

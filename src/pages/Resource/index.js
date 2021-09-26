@@ -16,7 +16,7 @@ const Resource = () => {
   const name = RESOURCE_TYPES_NAMES[resourceType]
   const columnNames = useColumnNames(resourceType)
 
-  const mockData = {}
+  const mockData = { id: 'test' }
   columnNames.map(col => mockData[col.accessor] = 'test')
 
   const data = React.useMemo(() => [mockData], [mockData])
