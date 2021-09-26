@@ -13,13 +13,9 @@ import {
 // Pages
 import Login from './pages/Login'
 import Dashboard from './pages/Dashboard'
-import Staff from './pages/Staff'
-import StaffView from './pages/Staff/view'
-import StaffAdd from './pages/Staff/add'
-import Pupils from './pages/Pupils'
-import Rooms from './pages/Rooms'
-import Groups from './pages/Groups'
-import Classes from './pages/Classes'
+import Resource from './pages/Resource'
+import ResourceView from './pages/Resource/view'
+import ResourceAdd from './pages/Resource/add'
 
 
 const Layout = ({ component: Component, ...rest }) => {
@@ -45,13 +41,9 @@ const App = () => {
       <Router>
         <Switch>
           <Layout path="/dashboard" component={Dashboard} />
-          <Layout path="/staff/add" component={StaffAdd} />
-          <Layout path="/staff/:id" component={StaffView} />
-          <Layout path="/staff" component={Staff} />
-          <Layout path="/pupils" component={Pupils} />
-          <Layout path="/rooms" component={Rooms} />
-          <Layout path="/groups" component={Groups} />
-          <Layout path="/classes" component={Classes} />
+          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/add" component={ResourceAdd} />
+          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/:id" component={ResourceView} />
+          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)" component={Resource} />
           <Route path="/" component={Login} />
         </Switch>
       </Router>

@@ -7,11 +7,14 @@ import {
   IconButton,
 } from '@chakra-ui/react'
 import { BiChevronLeft } from 'react-icons/bi'
-import { useHistory } from 'react-router-dom'
 import Select from 'react-select'
+import { useHistory, useParams } from 'react-router-dom'
+import { RESOURCE_TYPES_NAME } from './config'
 
-const StaffAdd = () => {
+const ResourceAdd = () => {
   const history = useHistory()
+  const { resourceType } = useParams()
+  const name = RESOURCE_TYPES_NAME[resourceType]
 
   const subjects = [
     { value: 'it', label: 'IT' },
@@ -33,12 +36,12 @@ const StaffAdd = () => {
     <Flex p={4} flexDirection="column">
       <Flex alignItems="center" mb={6}>
         <IconButton 
-          onClick={() => history.push('/staff')}
-          aria-label="Back to Staff" 
+          onClick={() => history.push(`/${resourceType}`)}
+          aria-label={`Back to ${name}`}
           icon={<BiChevronLeft />} 
           mr={4} 
         />
-        <Heading as="h2">Add Staff</Heading>
+        <Heading as="h2">Add {name}</Heading>
       </Flex>
 
       <Flex flexDirection="column">
@@ -85,4 +88,4 @@ const StaffAdd = () => {
   )
 }
 
-export default StaffAdd
+export default ResourceAdd
