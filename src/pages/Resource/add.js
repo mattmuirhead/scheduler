@@ -5,6 +5,7 @@ import {
   Input,
   Heading,
   IconButton,
+  Tooltip,
 } from '@chakra-ui/react'
 import { BiChevronLeft } from 'react-icons/bi'
 import Select from 'react-select'
@@ -35,12 +36,14 @@ const ResourceAdd = () => {
   return(
     <Flex p={4} flexDirection="column">
       <Flex alignItems="center" mb={6}>
-        <IconButton 
-          onClick={() => history.push(`/${resourceType}`)}
-          aria-label={`Back to ${name}`}
-          icon={<BiChevronLeft />} 
-          mr={4} 
-        />
+        <Tooltip label={`Back to ${name}`}>
+          <IconButton 
+            onClick={() => history.push(`/${resourceType}`)}
+            aria-label={`Back to ${name}`}
+            icon={<BiChevronLeft />} 
+            mr={4} 
+          />
+        </Tooltip>
         <Heading as="h2">Add {name}</Heading>
       </Flex>
 

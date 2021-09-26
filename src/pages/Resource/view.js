@@ -2,6 +2,7 @@ import {
   Flex,
   Heading,
   IconButton,
+  Tooltip,
 } from '@chakra-ui/react'
 import { BiChevronLeft } from 'react-icons/bi'
 import { useHistory, useParams } from 'react-router-dom'
@@ -14,12 +15,14 @@ const ResourceView = () => {
 
   return(
     <Flex p={4} alignItems="center">
-      <IconButton 
-        onClick={() => history.push(`/${resourceType}`)}
-        aria-label={`Back to ${name}`} 
-        icon={<BiChevronLeft />} 
-        mr={4} 
-      />
+      <Tooltip label={`Back to ${name}`}>
+        <IconButton 
+          onClick={() => history.push(`/${resourceType}`)}
+          aria-label={`Back to ${name}`} 
+          icon={<BiChevronLeft />} 
+          mr={4} 
+        />
+      </Tooltip>
       <Heading as="h2">Matt Muirhead</Heading>
     </Flex>
   )

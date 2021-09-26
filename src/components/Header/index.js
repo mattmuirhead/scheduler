@@ -10,6 +10,7 @@ import {
   MenuDivider,
   MenuItem,
   MenuList,
+  Tooltip,
 } from '@chakra-ui/react'
 import { 
   BiSearch, 
@@ -43,12 +44,14 @@ const Header = () => {
 
       <Flex alignItems="center">
         <Menu>
-          <MenuButton
-            aria-label="School Settings"
-            variant="outline"
-          >
-            <Avatar size="sm" name="School Name" mx={3} />
-          </MenuButton>
+          <Tooltip label="School Name">
+            <MenuButton
+              aria-label="School Settings"
+              variant="outline"
+            >
+                <Avatar size="sm" name="School Name" mx={3} />
+            </MenuButton>
+          </Tooltip>
           <MenuList>
             <MenuItem icon={<Icon as={BiCog} boxSize={5} />}>
               School Name Settings
@@ -64,12 +67,14 @@ const Header = () => {
         </Menu>
 
         <Menu>
-          <MenuButton
-            aria-label="User Settings"
-            variant="outline"
-          >
-            <Avatar size="sm" name="Matt Muirhead" />
-          </MenuButton>
+          <Tooltip label="Matt Muirhead">
+            <MenuButton
+              aria-label="User Settings"
+              variant="outline"
+            >
+                <Avatar size="sm" name="Matt Muirhead" />
+            </MenuButton>
+          </Tooltip>
           <MenuList>
             <MenuItem icon={<Icon as={BiUserCircle} boxSize={5} />}>
               User Settings
