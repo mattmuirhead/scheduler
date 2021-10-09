@@ -19,6 +19,7 @@ import Dashboard from './pages/Dashboard'
 import Resource from './pages/Resource'
 import ResourceView from './pages/Resource/view'
 import ResourceAdd from './pages/Resource/add'
+import Settings from './pages/Settings'
 
 
 const Layout = ({ component: Component, ...rest }) => {
@@ -48,6 +49,7 @@ const App = () => {
             <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/add" component={ResourceAdd} />
             <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/:id" component={ResourceView} />
             <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)" component={Resource} />
+            <Layout path="/:settingsType(school|user)" component={Settings} />
             <Route path="/" component={Login} />
           </Switch>
         </Router>

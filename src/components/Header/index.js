@@ -72,7 +72,7 @@ const Header = () => {
             </MenuButton>
           </Tooltip>
           <MenuList>
-            <MenuItem icon={<Icon as={BiCog} boxSize={5} />}>
+            <MenuItem icon={<Icon as={BiCog} boxSize={5} />} onClick={() => history.push('/school/settings')}>
               School Name Settings
             </MenuItem>
             <MenuDivider />
@@ -95,7 +95,7 @@ const Header = () => {
             </MenuButton>
           </Tooltip>
           <MenuList>
-            <MenuItem icon={<Icon as={BiUserCircle} boxSize={5} />}>
+            <MenuItem icon={<Icon as={BiUserCircle} boxSize={5} />} onClick={() => history.push('/user/settings')}>
               User Settings
             </MenuItem>
             <MenuItem 
