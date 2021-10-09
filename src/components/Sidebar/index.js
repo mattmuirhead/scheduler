@@ -1,4 +1,12 @@
-import { Button, Flex, Icon, IconButton, Heading, useMediaQuery } from '@chakra-ui/react'
+import { 
+  Button, 
+  Flex, 
+  Icon, 
+  IconButton, 
+  Heading, 
+  useMediaQuery,
+  Slide,
+} from '@chakra-ui/react'
 import { 
   BiAtom,
   BiDoorOpen,
@@ -21,84 +29,87 @@ const Sidebar = () => {
   const isMenuOpen = useSelector(selectIsMenuOpen)
   const toggleMenu = () => dispatch(toggleMenuOpen())
 
+  const Wrapper = props => {
+    return isDesktop ? 
+      <Flex {...props} /> : 
+      <Slide direction="left" in={isMenuOpen || undefined} style={{ zIndex: 10 }} {...props} />
+  }
+
   return (
-    <Flex 
-      flexDirection="column" 
-      borderRight={isDesktop && '1px solid'}
-      position={!isDesktop && 'fixed'}
-      width={!isDesktop && '100%'}
-      height={!isDesktop && '100%'}
-      transform={!isMenuOpen && !isDesktop && "translateY(-100%)"}
-      minWidth="250px"
-      background="white"
-      zIndex={3}
-      p={4}
-    >
-      <Flex width="100%" justifyContent="space-between">
-        <Heading mb={6}>Logo Here</Heading>
-        {!isDesktop &&
-          <IconButton 
-            aria-label="Toggle Menu"
-            icon={<BiX />} 
-            onClick={toggleMenu}
-          />
-        }
+    <Wrapper>
+      <Flex 
+        flexDirection="column" 
+        borderRight={isDesktop && '1px solid'}
+        minWidth="250px"
+        background="white"
+        p={4}
+      >
+        <Flex width="100%" justifyContent="space-between">
+          <Heading mb={6}>Logo Here</Heading>
+          {!isDesktop &&
+            <IconButton 
+              aria-label="Toggle Menu"
+              icon={<BiX />} 
+              onClick={toggleMenu}
+            />
+          }
+        </Flex>
+        <Button 
+          onClick={() => history.push('/dashboard')}
+          leftIcon={<Icon as={BiHome} boxSize={5} />} 
+          variant={isLocation('dashboard')}
+          justifyContent="flex-start"
+          mb={1}
+        >
+          Dashboard
+        </Button>
+        <Button 
+          onClick={() => history.push('/staff')}
+          leftIcon={<Icon as={BiUser} boxSize={5} />} 
+          variant={isLocation('staff')}
+          justifyContent="flex-start"
+          mb={1}
+        >
+          Staff
+        </Button>
+        <Button 
+          onClick={() => history.push('/pupils')}
+          leftIcon={<Icon as={BiGroup} boxSize={5} />} 
+          variant={isLocation('pupils')}
+          justifyContent="flex-start"
+          mb={1}
+        >
+          Pupils
+        </Button>
+        <Button 
+          onClick={() => history.push('/rooms')}
+          leftIcon={<Icon as={BiDoorOpen} boxSize={5} />} 
+          variant={isLocation('rooms')}
+          justifyContent="flex-start"
+          mb={1}
+        >
+          Rooms
+        </Button>
+        <Button 
+          onClick={() => history.push('/groups')}
+          leftIcon={<Icon as={BiGroup} boxSize={5} />} 
+          variant={isLocation('groups')}
+          justifyContent="flex-start"
+          mb={1}
+        >
+          Groups
+        </Button>
+        <Button 
+          onClick={() => history.push('/classes')}
+          leftIcon={<Icon as={BiAtom} boxSize={5} />} 
+          variant={isLocation('classes')}
+          justifyContent="flex-start"
+          mb={1}
+        >
+          Classes
+        </Button>
       </Flex>
-      <Button 
-        onClick={() => history.push('/dashboard')}
-        leftIcon={<Icon as={BiHome} boxSize={5} />} 
-        variant={isLocation('dashboard')}
-        justifyContent="flex-start"
-        mb={1}
-      >
-        Dashboard
-      </Button>
-      <Button 
-        onClick={() => history.push('/staff')}
-        leftIcon={<Icon as={BiUser} boxSize={5} />} 
-        variant={isLocation('staff')}
-        justifyContent="flex-start"
-        mb={1}
-      >
-        Staff
-      </Button>
-      <Button 
-        onClick={() => history.push('/pupils')}
-        leftIcon={<Icon as={BiGroup} boxSize={5} />} 
-        variant={isLocation('pupils')}
-        justifyContent="flex-start"
-        mb={1}
-      >
-        Pupils
-      </Button>
-      <Button 
-        onClick={() => history.push('/rooms')}
-        leftIcon={<Icon as={BiDoorOpen} boxSize={5} />} 
-        variant={isLocation('rooms')}
-        justifyContent="flex-start"
-        mb={1}
-      >
-        Rooms
-      </Button>
-      <Button 
-        onClick={() => history.push('/groups')}
-        leftIcon={<Icon as={BiGroup} boxSize={5} />} 
-        variant={isLocation('groups')}
-        justifyContent="flex-start"
-        mb={1}
-      >
-        Groups
-      </Button>
-      <Button 
-        onClick={() => history.push('/classes')}
-        leftIcon={<Icon as={BiAtom} boxSize={5} />} 
-        variant={isLocation('classes')}
-        justifyContent="flex-start"
-        mb={1}
-      >
-        Classes
-      </Button>
-    </Flex>
+    </Wrapper>
   )
 }
 
