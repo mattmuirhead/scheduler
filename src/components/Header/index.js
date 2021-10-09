@@ -24,14 +24,18 @@ import {
   BiMenu,
 } from 'react-icons/bi'
 import { useHistory, useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { toggleMenuOpen } from '../../state/ui'
 import { RESOURCE_TYPES_NAMES } from '../../pages/Resource/config'
 
 const Header = () => {
   const history = useHistory()
+  const dispatch = useDispatch()
   const { resourceType } = useParams()
   const searchName = !!resourceType ? RESOURCE_TYPES_NAMES[resourceType] : 'Everything'
   const [isDesktop] = useMediaQuery("(min-width: 768px)")
-
+  
+  const toggleMenu = () => dispatch(toggleMenuOpen())
   const logout = () => history.push('/')
 
   return (
@@ -46,6 +50,7 @@ const Header = () => {
           aria-label="Toggle Menu"
           icon={<BiMenu />} 
           mr={4} 
+          onClick={toggleMenu}
         />
       }
       <InputGroup mr={2}>

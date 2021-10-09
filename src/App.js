@@ -4,6 +4,9 @@ import theme from './theme'
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 
+import { Provider } from 'react-redux'
+import store from './state/store'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -37,17 +40,19 @@ const Layout = ({ component: Component, ...rest }) => {
 
 const App = () => {
   return (
-    <ChakraProvider theme={theme}>
-      <Router>
-        <Switch>
-          <Layout path="/dashboard" component={Dashboard} />
-          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/add" component={ResourceAdd} />
-          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/:id" component={ResourceView} />
-          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)" component={Resource} />
-          <Route path="/" component={Login} />
-        </Switch>
-      </Router>
-    </ChakraProvider>
+    <Provider store={store}>
+      <ChakraProvider theme={theme}>
+        <Router>
+          <Switch>
+            <Layout path="/dashboard" component={Dashboard} />
+            <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/add" component={ResourceAdd} />
+            <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/:id" component={ResourceView} />
+            <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)" component={Resource} />
+            <Route path="/" component={Login} />
+          </Switch>
+        </Router>
+      </ChakraProvider>
+    </Provider>
   )
 }
 

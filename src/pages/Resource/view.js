@@ -24,6 +24,7 @@ const ResourceView = () => {
         />
       </Tooltip>
       <Heading as="h2">Matt Muirhead</Heading>
+      Add view and schedule buttons - schedule should show the schedule for that resource
     </Flex>
   )
 }

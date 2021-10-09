@@ -8,12 +8,18 @@ import {
   BiX
 } from 'react-icons/bi'
 import { useLocation, useHistory } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectIsMenuOpen, toggleMenuOpen } from '../../state/ui'
 
 const Sidebar = () => {
   const location = useLocation()
   const history = useHistory()
+  const dispatch = useDispatch()
   const [isDesktop] = useMediaQuery("(min-width: 768px)")
   const isLocation = page => location.pathname.includes(page) ? 'solid' : 'ghost'
+
+  const isMenuOpen = useSelector(selectIsMenuOpen)
+  const toggleMenu = () => dispatch(toggleMenuOpen())
 
   return (
     <Flex 
@@ -22,6 +28,7 @@ const Sidebar = () => {
       position={!isDesktop && 'fixed'}
       width={!isDesktop && '100%'}
       height={!isDesktop && '100%'}
+      transform={!isMenuOpen && !isDesktop && "translateY(-100%)"}
       minWidth="250px"
       background="white"
       zIndex={3}
@@ -33,6 +40,7 @@ const Sidebar = () => {
           <IconButton 
             aria-label="Toggle Menu"
             icon={<BiX />} 
+            onClick={toggleMenu}
           />
         }
       </Flex>
