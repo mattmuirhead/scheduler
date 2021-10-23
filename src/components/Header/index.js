@@ -27,6 +27,7 @@ import { useHistory, useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { toggleMenuOpen } from '../../state/ui'
 import { RESOURCE_TYPES_NAMES } from '../../pages/Resource/config'
+import { auth } from '../../firebase'
 
 const Header = () => {
   const history = useHistory()
@@ -36,7 +37,10 @@ const Header = () => {
   const [isDesktop] = useMediaQuery("(min-width: 768px)")
   
   const toggleMenu = () => dispatch(toggleMenuOpen())
-  const logout = () => history.push('/')
+  const logout = () => {
+    auth.signOut();
+    history.push('/')
+  }
 
   return (
     <Flex 
