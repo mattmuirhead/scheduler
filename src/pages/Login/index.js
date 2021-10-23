@@ -19,6 +19,7 @@ import { auth, db, googleProvider } from '../../firebase'
 
 const Login = () => {
   const history = useHistory()
+  
   const [email, setEmail] = useState()
   const [error, setError] = useState()
   const [password, setPassword] = useState()
@@ -57,9 +58,8 @@ const Login = () => {
           name: user.displayName,
           authProvider: "google",
           email: user.email,
-        });
+        })
       }
-      history.push('/dashboard')
     } catch (err) {
       setError('Sorry, something went wrong. Please try again.')
     }

@@ -24,8 +24,9 @@ import {
   BiMenu,
 } from 'react-icons/bi'
 import { useHistory, useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toggleMenuOpen } from '../../state/ui'
+import { clearSession, selectUser } from '../../state/session'
 import { RESOURCE_TYPES_NAMES } from '../../pages/Resource/config'
 import { auth } from '../../firebase'
 
@@ -35,10 +36,13 @@ const Header = () => {
   const { resourceType } = useParams()
   const searchName = !!resourceType ? RESOURCE_TYPES_NAMES[resourceType] : 'Everything'
   const [isDesktop] = useMediaQuery("(min-width: 768px)")
+
+  const user = useSelector(selectUser)
   
   const toggleMenu = () => dispatch(toggleMenuOpen())
   const logout = () => {
-    auth.signOut();
+    auth.signOut()
+    dispatch(clearSession())
     history.push('/')
   }
 
@@ -95,7 +99,7 @@ const Header = () => {
               aria-label="User Settings"
               variant="outline"
             >
-                <Avatar size="sm" name="Matt Muirhead" />
+                <Avatar size="sm" name={user?.name} src={user?.avatar} />
             </MenuButton>
           </Tooltip>
           <MenuList>
