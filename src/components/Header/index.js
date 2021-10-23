@@ -79,8 +79,8 @@ const Header = () => {
             <MenuItem icon={<Icon as={BiGridAlt} boxSize={5} />}>
               Switch School
             </MenuItem>
-            <MenuItem icon={<Icon as={BiCustomize} boxSize={5} />}>
-              New School
+            <MenuItem icon={<Icon as={BiCustomize} boxSize={5} />} onClick={() => history.push('/school/add')}>
+              Add School
             </MenuItem>
           </MenuList>
         </Menu>
