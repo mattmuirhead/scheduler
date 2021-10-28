@@ -11,21 +11,23 @@ import {
   FormLabel,
   Heading,
   Input,
+  Text,
+  Link,
   useMediaQuery,
 } from '@chakra-ui/react'
 import { FaGoogle } from "react-icons/fa"
 import { useHistory }  from 'react-router-dom'
 import { auth, db, googleProvider } from '../../firebase'
 
-const Login = () => {
+const SignIn = () => {
   const history = useHistory()
   
   const [email, setEmail] = useState()
-  const [error, setError] = useState()
   const [password, setPassword] = useState()
+  const [error, setError] = useState()
   const [isDesktop] = useMediaQuery("(min-width: 768px)")
 
-  const onLogin = async () => {
+  const onSignIn = async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
       history.push('/dashboard')
@@ -44,7 +46,7 @@ const Login = () => {
     }
   }
 
-  const onGoogleLogin = async () => {
+  const onGoogleSignIn = async () => {
     try {
       const res = await auth.signInWithPopup(googleProvider)
       const user = res.user
@@ -56,7 +58,7 @@ const Login = () => {
         await db.collection("users").add({
           uid: user.uid,
           name: user.displayName,
-          authProvider: "google",
+          authProvider: 'google',
           email: user.email,
         })
       }
@@ -89,15 +91,17 @@ const Login = () => {
               <Input type="password" onChange={event => setPassword(event.target.value)} />
             </FormControl>
 
-            <Button onClick={onLogin} mb={2}>Login</Button>
+            <Button onClick={onSignIn} mb={2}>Sign in</Button>
+
+            <Text>Don't have an account? <Link onClick={() => history.push('/sign-up')}>Sign up!</Link></Text>
           </Flex>
 
           {isDesktop && <Divider height="auto" orientation={"vertical"} mx={4} />}
 
           <Flex flexDirection="column" width={isDesktop && '50%'}>
-            <FormLabel>Or login with:</FormLabel>
-            <Button leftIcon={<FaGoogle />} onClick={onGoogleLogin} mb={4}>Google</Button>
-            More social logins coming soon ...
+            <FormLabel>Or sign in with:</FormLabel>
+            <Button leftIcon={<FaGoogle />} onClick={onGoogleSignIn} mb={4}>Google</Button>
+            More social sign ins coming soon ...
           </Flex>
         </Flex>
       </Flex>
@@ -105,4 +109,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default SignIn

@@ -3,17 +3,18 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-} from "react-router-dom"
+} from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { setSession, clearSession } from './state/session'
 
-import { Flex } from "@chakra-ui/react"
+import { Center, Flex, Spinner } from '@chakra-ui/react'
 
 import Header from './components/Header'
 import Sidebar from './components/Sidebar'
 
 // Pages
-import Login from './pages/Login'
+import SignIn from './pages/SignIn'
+import SignUp from './pages/SignUp'
 import Dashboard from './pages/Dashboard'
 import Resource from './pages/Resource'
 import ResourceView from './pages/Resource/view'
@@ -24,7 +25,6 @@ import SchoolAdd from './pages/School/add'
 // Firebase
 import { auth } from './firebase'
 import { useAuthState } from 'react-firebase-hooks/auth'
-
 
 const Layout = ({ component: Component, ...rest }) => {
   return (
@@ -58,26 +58,34 @@ const Routes = () => {
     !user && dispatch(clearSession())
   }, [dispatch, user])
 
-  console.log(user)
-
-  if (isLoading) return 'loading'
+  if (isLoading) return (
+    <Center w="100vw" h="100vh">
+      <Spinner
+        thickness="4px"
+        speed="0.65s"
+        emptyColor="gray.200"
+        size="xl"
+      />
+    </Center>
+  )
 
   return (
     <Router>
-      <Switch>
-        {!!user ?
-          <>
-            <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/add" component={ResourceAdd} />
-            <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/:id" component={ResourceView} />
-            <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)" component={Resource} />
-            <Route path="/school/add" component={SchoolAdd} />
-            <Layout path="/:settingsType(school|user)" component={Settings} />
-            <Layout path="/" component={Dashboard} />
-          </>
-          :
-          <Route path="/" component={Login} />
-        }
-      </Switch>
+      {!!user ?
+        <Switch>
+          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/add" component={ResourceAdd} />
+          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)/:id" component={ResourceView} />
+          <Layout path="/:resourceType(staff|pupils|rooms|groups|classes)" component={Resource} />
+          <Route path="/school/add" component={SchoolAdd} />
+          <Layout path="/:settingsType(school|user)" component={Settings} />
+          <Layout path="/" component={Dashboard} />
+        </Switch>
+        :
+        <Switch>
+          <Route path="/sign-up" component={SignUp} />
+          <Route path="/" component={SignIn} />
+        </Switch>
+      }
     </Router>
   )
 }
