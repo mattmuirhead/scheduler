@@ -27,6 +27,8 @@ const SignIn = () => {
   const [error, setError] = useState()
   const [isDesktop] = useMediaQuery("(min-width: 768px)")
 
+  const signInDisabled = !email || !password
+
   const onSignIn = async () => {
     try {
       await auth.signInWithEmailAndPassword(email, password)
@@ -91,9 +93,9 @@ const SignIn = () => {
               <Input type="password" onChange={event => setPassword(event.target.value)} />
             </FormControl>
 
-            <Button onClick={onSignIn} mb={2}>Sign in</Button>
+            <Button onClick={onSignIn} mb={2} disabled={signInDisabled}>Sign in</Button>
 
-            <Text>Don't have an account? <Link onClick={() => history.push('/sign-up')}>Sign up!</Link></Text>
+            <Text mb={4}>Don't have an account? <Link onClick={() => history.push('/sign-up')}>Sign up!</Link></Text>
           </Flex>
 
           {isDesktop && <Divider height="auto" orientation={"vertical"} mx={4} />}
