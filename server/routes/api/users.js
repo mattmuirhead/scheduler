@@ -1,12 +1,9 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const router = express.Router()
-
-const jsonParser = bodyParser.json()
-
-
-// Load User model
 const User = require('../../models/User')
+
+const router = express.Router()
+const jsonParser = bodyParser.json()
 
 // @route GET api/users/test
 // @description tests users route
@@ -43,7 +40,7 @@ router.post('/', jsonParser, (req, res) => {
 // @route GET api/users/:id
 // @description Update user
 // @access Public
-router.put('/:id', (req, res) => {
+router.put('/:id', jsonParser, (req, res) => {
   User.findByIdAndUpdate(req.params.id, req.body)
     .then(user => res.json({ msg: 'Updated successfully' }))
     .catch(err =>
