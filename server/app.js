@@ -1,11 +1,15 @@
 const express = require('express')
 const connectDB = require('./config/db')
 
+// routes
+const users = require('./routes/api/users')
+
 const app = express()
 
 connectDB()
 
-app.get('/', (req, res) => res.send('Hello world!!'))
+// use Routes
+app.use('/api/users', users)
 
 const port = process.env.PORT || 8082
 
