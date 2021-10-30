@@ -1,0 +1,23 @@
+{
+  "name": "scheduler-server",
+  "version": "1.0.0",
+  "description": "Server for the Scheduler project",
+  "main": "app.js",
+  "author": "Matt Muirhead",
+  "license": "MIT",
+  "homepage": "https://github.com/mattmuirhead/scheduler/tree/main/server",
+  "scripts": {
+    "start": "node app.js",
+    "app": "nodemon app.js"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^6.0.12",
+    "validation": "^0.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
